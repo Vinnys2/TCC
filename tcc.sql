@@ -90,10 +90,7 @@ CREATE TABLE `vacina` (
 ALTER TABLE `vacina`
   ADD PRIMARY KEY (`id_vacina`);
   
- -- AUTO_INCREMENT de tabela `vacina`
---
-ALTER TABLE `vacina`
-  MODIFY `id_vacina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 
 --
 -- Extraindo dados da tabela `vacina`
@@ -109,6 +106,10 @@ INSERT INTO `vacina` (`id_vacina`, `tipo`, `descricao`) VALUES
 (7, 'Covid-19', 'Uma nova mutação do Sars-cov assola o mundo atual, por isso, a vacinação é o único meio de dete-la'),
 (9, 'Mers', 'Também um tipo de coronavírus que tem um potencial de transmissão alto, porém menos letal que o sars');
 
+ -- AUTO_INCREMENT de tabela `vacina`
+--
+ALTER TABLE `vacina`
+  MODIFY `id_vacina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 
 
@@ -126,6 +127,12 @@ ALTER TABLE `agendamento`
   ADD KEY `agendamento_paciente` (`cpf_paciente`),
   ADD KEY `agendamento_vacina` (`tipo_vacina`);
 
+
+INSERT INTO `agendamento` (`id_agendamento`, `cpf_paciente`, `tipo_vacina`, `data_agendada`) VALUES
+(8, '123', 2, '2020-12-08'),
+(10, '231', 3, '2020-12-18'),
+(11, '321', 7, '2020-12-09');
+
 --
 ALTER TABLE `agendamento`
   MODIFY `id_agendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
@@ -135,13 +142,8 @@ ALTER TABLE `agendamento`
 ALTER TABLE `agendamento`
   ADD CONSTRAINT `agendamento_paciente` FOREIGN KEY (`cpf_paciente`) REFERENCES `paciente` (`cpf`) ON UPDATE CASCADE,
   ADD CONSTRAINT `agendamento_vacina` FOREIGN KEY (`tipo_vacina`) REFERENCES `vacina` (`id_vacina`) ON UPDATE CASCADE;
--- Extraindo dados da tabela `agendamento`
---
 
-INSERT INTO `agendamento` (`id_agendamento`, `cpf_paciente`, `tipo_vacina`, `data_agendada`) VALUES
-(8, '123', 2, '2020-12-08'),
-(10, '231', 3, '2020-12-18'),
-(11, '321', 7, '2020-12-09');
+
 
 
 
